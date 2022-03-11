@@ -1,29 +1,56 @@
 const Employee = require('../lib/Employee');
-jest.mock('../lib/Employee');
 
 test('creates an Employee object', () => {
     const employee = new Employee();
 
-    expect(employee.name).toEqual(expect.any(String));
-    expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(String));
-    expect(employee.role).toEqual(expect.any(String));
+    expect(typeof(employee)).toBe("object");
+});
+
+test("can set name", () => {
+    const employeeName = "Kiri";
+    const employee = new Employee(employeeName);
+
+    expect(employee.name).toBe(employeeName);
+});
+
+test("can set id", () => {
+    const employeeID = 2;
+    const employee = new Employee("Kiri", 2);
+
+    expect(employee.id).toBe(employeeID);
+});
+
+test("can set email", () => {
+    const employeeEmail = "Hello@email.com";
+    const employee = new Employee("Kiri", 2, employeeEmail);
+
+    expect(employee.email).toBe(employeeEmail);
 });
 
 test("return the employee's name", () => {
-    const employee = new Employee();
+    const employeeName = "Kiri";
+    const employee = new Employee(employeeName);
 
-    expect(employee.getName()).toEqual(expect.any(String));
+    expect(employee.getName()).toBe(employeeName);
 });
 
 test("return the employee's id", () => {
-    const employee = new Employee();
+    const employeeID = 2;
+    const employee = new Employee("Kiri", employeeID);
 
-    expect(employee.getId()).toEqual(expect.any(Number));
+    expect(employee.getId()).toBe(employeeID);
 });
 
 test("return the employee's email", () => {
-    const employee = new Employee();
+    const employeeEmail = "Hello@email.com";
+    const employee = new Employee("Kiri", 2, employeeEmail);
 
-    expect(employee.getEmail()).toEqual(expect.any(String));
+    expect(employee.getEmail()).toBe(employeeEmail);
+});
+
+test("return the employee's role", () => {
+    const employeeRole = 'Employee';
+    const employee = new Employee("Kiri", 2, "email", employeeRole);
+
+    expect(employee.getRole()).toBe(employeeRole);
 });
